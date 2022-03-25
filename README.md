@@ -82,3 +82,10 @@ execute the file exec.py with the name argument
 
 ```bash
 python exec.py --name=name_of_the_project
+```
+
+check your api
+
+```url
+localhost:8080
+```
