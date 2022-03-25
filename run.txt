@@ -1,0 +1,3 @@
+spring init --name=NAME --javaVersion=17 --packageName=com.example.NAME --artifactId=NAME --dependencies=data-rest,web,lombok,data-jpa,h2,cloud-eureka-server,cloud-eureka,cloud-gateway,cloud-feign my-project
+
+python index.py --name=NAME --javaVersion=17 --dependencies=data-rest,web,lombok,data-jpa,h2
