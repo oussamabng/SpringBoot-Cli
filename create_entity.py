@@ -13,15 +13,16 @@ attributes = init.attributes.split(",")
 filename = os.path.join(os.getcwd(),init.name,"src","main","java","com","example","{}".format(init.name),"entities","{}.java".format(init.entity))
 package = "package com.example.{}.entities;\n".format(init.name);
 persistence = "import javax.persistence.*;\n"
-date_import = "import java.util.Date;\n"
-
+util = "import java.util.*;\n"
+lombok = "import lombok.*"
 
 def create():
     with open(filename, 'w') as f:
       f.write(package)
       f.write(persistence)
-      f.write(date_import)
-
+      f.write(util)
+      f.write(lombok)
+      f.write("@Entity @Data @AllArgsConstructor @NoArgsConstructor\n")
       f.write("public class {}".format(init.entity))
       f.write("{\n")
       
