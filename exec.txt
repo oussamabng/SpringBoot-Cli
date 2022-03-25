@@ -1,0 +1,3 @@
+python index.py --name=NAME --javaVersion=17 --dependencies=data-rest,web,lombok,data-jpa,h2
+
+python config.py --port=8080 --name=ms-test --dbName=testdb
