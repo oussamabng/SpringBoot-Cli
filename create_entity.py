@@ -14,7 +14,7 @@ filename = os.path.join(os.getcwd(),init.name,"src","main","java","com","example
 package = "package com.example.{}.entities;\n".format(init.name);
 persistence = "import javax.persistence.*;\n"
 util = "import java.util.*;\n"
-lombok = "import lombok.*"
+lombok = "import lombok.*;\n"
 
 def create():
     with open(filename, 'w') as f:
