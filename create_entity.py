@@ -26,7 +26,7 @@ def create():
       f.write(lombok)
       f.write(json)
       f.write("@Entity @Data @AllArgsConstructor @NoArgsConstructor\n")
-      f.write("public class {}".format(init.entity))
+      f.write("public class {}".format(init.entity.lower().capitalize()))
       f.write("{\n")
       
       for attribute in attributes:
