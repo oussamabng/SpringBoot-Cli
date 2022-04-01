@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import argparse
 
@@ -15,6 +16,7 @@ package = "package com.example.{}.entities;\n".format(init.name);
 persistence = "import javax.persistence.*;\n"
 util = "import java.util.*;\n"
 lombok = "import lombok.*;\n"
+json = "import com.fasterxml.jackson.annotation.JsonProperty;\n"
 
 def create():
     with open(filename, 'w') as f:
@@ -22,6 +24,7 @@ def create():
       f.write(persistence)
       f.write(util)
       f.write(lombok)
+      f.write(json)
       f.write("@Entity @Data @AllArgsConstructor @NoArgsConstructor\n")
       f.write("public class {}".format(init.entity))
       f.write("{\n")
