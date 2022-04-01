@@ -75,7 +75,50 @@ python config.py --port=8080 --name=name_of_the_project --dbName=testdb
 ```
 
 
-check if the folders (entities , repository, models... ect) were created inside your project
+check if the folders (entities , repository, models... ect) were created inside your projec
+
+## Create Entity
+
+exec the create_entity.py script with different arguments
+
+```bash
+python create_entity.py --name=name_of_the_project --entity=User 
+--attributes=id:Long,name:String
+```
+
+data types disponible are:
+```bash
+["String","Boolean","int","Long","double","Date","Integer"]
+```
+
+## Create Embeddable
+exec the same create_entity.py script with one more argument
+```bash
+python create_entity.py --name=name_of_the_project --entity=User 
+--attributes=id:Long,name:String --embeddable=true
+```
+
+## Create Enum
+exec the create_enum.py script with different arguments
+```bash
+python create_enum.py --name=name_of_the_project --enum=Gender 
+--attributes=Male,Female
+```
+## Adding Transient or JsonIgnore
+exec the manage_entity.py script with different arguments
+```bash
+python manage_entity.py --name=name_of_the_project --entity=User 
+--attribute=name --type=transient
+```
+```bash
+python manage_entity.py --name=name_of_the_project --entity=User 
+--attribute=name --type=json_ignore
+```
+## Adding Relation ManyToOne OneToMany
+exec the many_to_one.py script with different arguments
+```bash
+python many_to_one.py --name=name_of_the_project --many=Project --one=User --type=LAZY
+```
 
 ## Execution of the project
 execute the file exec.py with the name argument
