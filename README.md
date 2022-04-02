@@ -79,7 +79,12 @@ execute the file config.py with the different arguments for the configuration
 python config.py --port=8080 --name=name_of_the_project --dbName=testdb
 
 ```
+to add eureka seetings add --eureka=true
 
+```bash
+python config.py --port=8080 --name=name_of_the_project --dbName=testdb --eureka=true
+
+```
 
 check if the folders (entities , repository, models... ect) were created inside your projec
 
