@@ -45,7 +45,7 @@ to check everything is okay
   spring --version
   mvn --version
 ```
-## Installation
+## Python Installation
 install python requirements 
 ```bash
   pip install -r requirements.txt
