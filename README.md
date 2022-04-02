@@ -45,6 +45,12 @@ to check everything is okay
   spring --version
   mvn --version
 ```
+## Installation
+install python requirements 
+```bash
+  pip install -r requirements.txt
+```
+
 ## Creation of the project
 
 execute the file index.py with the different arguments for the project
