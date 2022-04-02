@@ -31,7 +31,6 @@ def create():
       f.write("}")
 
 if __name__ == "__main__":
-
   for attribute in attributes:
         name,type = attribute.split(":")
         if (type not in data_types):

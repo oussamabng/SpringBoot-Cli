@@ -111,7 +111,11 @@ exec the create_model.py script with different arguments
 python create_enum.py --name=name_of_the_project --model=Formation 
 --attributes=name:String
 ```
-
+## Create Repository
+exec the create_repository.py script with different arguments
+```bash
+python create_repository.py --name=name_of_the_project --entity=User
+```
 ## Adding Transient or JsonIgnore
 exec the manage_entity.py script with different arguments
 ```bash
