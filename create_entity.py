@@ -9,7 +9,6 @@ my_parser.add_argument("--embeddable",action="store")
 my_parser.add_argument("--attributes",action="store",required=True)
 init = my_parser.parse_args()
 
-path = os.path.join(os.getcwd(),init.name)
 data_types = ["String","Boolean","int","Long","double","Date","Integer"]
 attributes = init.attributes.split(",")
 filename = os.path.join(os.getcwd(),init.name,"src","main","java","com","example","{}".format(init.name),"entities","{}.java".format(init.entity))

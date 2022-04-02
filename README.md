@@ -104,6 +104,14 @@ exec the create_enum.py script with different arguments
 python create_enum.py --name=name_of_the_project --enum=Gender 
 --attributes=Male,Female
 ```
+
+## Create Model
+exec the create_model.py script with different arguments
+```bash
+python create_enum.py --name=name_of_the_project --model=Formation 
+--attributes=name:String
+```
+
 ## Adding Transient or JsonIgnore
 exec the manage_entity.py script with different arguments
 ```bash
