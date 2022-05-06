@@ -31,7 +31,7 @@ def create(embeddable):
       if (init.embeddable!="true"):
             f.write("@Entity\n")
       else:
-            f.write("@@Embeddable\n")
+            f.write("@Embeddable\n")
       f.write(" @Data @AllArgsConstructor @NoArgsConstructor\n")
       
       if (embeddable):
