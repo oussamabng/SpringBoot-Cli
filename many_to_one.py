@@ -12,8 +12,8 @@ init = my_parser.parse_args()
 filename_many = os.path.join(os.getcwd(),init.name,"src","main","java","com","example","{}".format(init.name),"entities","{}.java".format(init.many))
 filename_one = os.path.join(os.getcwd(),init.name,"src","main","java","com","example","{}".format(init.name),"entities","{}.java".format(init.one))
 
-many = "@ManyToOne\nprivate {} {};\n".format(init.many,init.many.lower())
-one = '@OneToMany(mappedBy = "{}",cascade = CascadeType.ALL,fetch = FetchType.{})\nCollection<{}> {}s;\n'.format(init.many.lower(),init.type.upper(),init.one,init.one.lower())
+many = "@ManyToOne\nprivate {} {};\n".format(init.one,init.one.lower())
+one = '@OneToMany(mappedBy = "{}",cascade = CascadeType.ALL,fetch = FetchType.{})\nCollection<{}> {}s;\n'.format(init.one.lower(),init.type.upper(),init.many,init.many.lower())
 
 
 def read(filename,type):
