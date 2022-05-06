@@ -110,6 +110,12 @@ for created an attribute of type enum add (-enum) after type Enum :
 python create_entity.py --attributes:genre:Gender-enum
 ```
 
+for created an attribute of type embeddable add (-embeddable) after type of the class embeddable :
+```bash
+python create_entity.py --attributes:genre:Adresse-embeddable
+```
+
+
 data types disponible are:
 ```bash
 ["String","Boolean","int","Long","double","Date","Integer"]
