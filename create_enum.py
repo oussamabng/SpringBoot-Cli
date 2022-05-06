@@ -16,7 +16,7 @@ def create():
         f.write("public enum {} {}\n".format(init.enum.lower().capitalize(),"{"))
         f.write("    {}\n".format(init.attributes))
         f.write("}")
-
+    print("enum {} was created".format(init.enum))
 
 if __name__ == "__main__":
     create()

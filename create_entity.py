@@ -20,7 +20,6 @@ json = "import com.fasterxml.jackson.annotation.JsonProperty;\n"
 emb = "import javax.persistence.Embeddable\n;import java.io.Serializable;\n"
 
 def create(embeddable):
-    print(embeddable)
     with open(filename, 'w') as f:
       f.write(package)
       f.write(persistence)
@@ -38,21 +37,29 @@ def create(embeddable):
       f.write("{\n")
       
       for attribute in attributes:
-        name,type = attribute.split(":")
-        if (name == "id"):
-          f.write("@Id\n")
-          f.write("@GeneratedValue(strategy = GenerationType.IDENTITY)\n")
-        f.write("private {} {};\n".format(type,name))
+            name,type = attribute.split(":")
+            if (name == "id"):
+                  f.write("@Id\n")
+                  f.write("@GeneratedValue(strategy = GenerationType.IDENTITY)\n")
+            if (len(type.split("-")) == 2):
+                  print()
+                  if (type.split("-")[1] == "enum"):
+                        f.write("@Enumerated(EnumType.STRING)\n")
+                        f.write("private {} {};\n".format(type.split("-")[0],name))   
+            else:
+                  f.write("private {} {};\n".format(type,name))
       
       f.write("}")
+      print("entity {} created successfully".format(init.entity))
 
 if __name__ == "__main__":
 
   for attribute in attributes:
         name,type = attribute.split(":")
         if (type not in data_types):
-          print("this type: {} don't exist in JAVA".format(type))
-          exit(0)
+              if (type.split("-")[1] != "enum"):
+                    print("this type: {} don't exist in JAVA".format(type))
+                    exit(0)
   if (init.embeddable and init.embeddable == "true"):
         create(embeddable=True)
   else:
