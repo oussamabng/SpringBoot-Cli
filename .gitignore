@@ -7,10 +7,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+.vscode/
 .idea/
 # C extensions
 *.so
+tp1
 
 # Distribution / packaging
 .Python
