@@ -1,4 +1,3 @@
-from msilib.schema import Error
 import os
 import argparse
 
@@ -7,12 +6,19 @@ my_parser = argparse.ArgumentParser()
 my_parser.add_argument("--port",action="store",required=True)
 my_parser.add_argument("--name",action="store",required=True)
 my_parser.add_argument("--dbName",action="store",required=True)
+my_parser.add_argument("--eureka",action="store")
 
 init = my_parser.parse_args()
 
+eureka = ""
+
+if (init.eureka and init.eureka == "true"):
+      eureka = "eureka.client.register-with-eureka =true\neureka.client.fetch-registry=true\neureka.client.service-url.defaultZone=http://localhost:8888/eureka\n"
+
+
 filename = os.path.join(os.getcwd(),init.name,"src","main","resources","application.properties")
 
-lines = ["server.port = {}".format(init.port),"spring.application.name={}".format(init.name),"spring.datasource.url=jdbc:h2:mem:{}".format(init.dbName),"spring.h2.console.enabled=true","spring.jpa.show-sql=true"]
+lines = ["server.port = {}".format(init.port),"spring.application.name={}".format(init.name),"spring.datasource.url=jdbc:h2:mem:{}".format(init.dbName),"spring.h2.console.enabled=true","spring.jpa.show-sql=true\n{}".format(eureka)]
 
 folders = ["entities","repositories","models","proxies","controllers"]
 
