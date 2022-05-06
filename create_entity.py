@@ -28,7 +28,11 @@ def create(embeddable):
       f.write(json)
       if (embeddable):
             f.write(emb)
-      f.write("@Entity @Data @AllArgsConstructor @NoArgsConstructor\n")
+      if (init.embeddable!="true"):
+            f.write("@Entity\n")
+      else:
+            f.write("@@Embeddable\n")
+      f.write(" @Data @AllArgsConstructor @NoArgsConstructor\n")
       
       if (embeddable):
             f.write("public class {} implements Serializable".format(init.entity.lower().capitalize()))
