@@ -1,0 +1,15 @@
+Spring Web --> web
+Spring REST Repositories --> data-rest
+Spring Data JPA --> data-jpa
+Mysql Driver --> mysql
+h2 --> h2
+Lombok --> lombok
+Eureka Discovery Client --> cloud-eureka
+Eureka Server --> cloud-eureka-server
+Resilience4j --> cloud-resilience4j
+OpenFeign --> cloud-feign
+CloudLoad Balancer
+Config Client --> cloud-config-client
+Config Server --> cloud-config-server
+DevTools --> devtools
+Spring Cloud Gateway --> cloud-gateway
