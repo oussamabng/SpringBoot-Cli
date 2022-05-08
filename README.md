@@ -86,6 +86,14 @@ python config.py --port=8080 --name=name_of_the_project --dbName=testdb --eureka
 
 ```
 
+to specify the db type add (type_bdd)  :
+h2,mysql
+
+```bash
+python config.py --type_bdd=h2
+
+```
+
 check if the folders (entities , repository, models... ect) were created inside your projec
 
 ## Create Entity
@@ -95,6 +103,11 @@ exec the create_entity.py script with different arguments
 ```bash
 python create_entity.py --name=name_of_the_project --entity=User 
 --attributes=id:Long,name:String
+```
+
+for created an attribute of type enum add (-enum) after type Enum :
+```bash
+python create_entity.py --attributes:genre:Gender-enum
 ```
 
 data types disponible are:
