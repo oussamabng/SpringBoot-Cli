@@ -1,5 +1,6 @@
 @FeignClient(name="ms-formation")
 @LoadBalancerClient(name="ms-formation")
+// or this for specefique config  @LoadBalancerClient(name="ms-formation",configuration = LBConfiguration.class)
 
 public interface FormationProxy {
 

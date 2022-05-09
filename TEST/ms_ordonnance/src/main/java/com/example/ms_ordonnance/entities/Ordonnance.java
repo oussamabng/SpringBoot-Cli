@@ -11,4 +11,5 @@ public class Ordonnance{
 private Long id;
 private Date date;
 private String contenu;
+private Long patientId;
 }

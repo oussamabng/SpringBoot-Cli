@@ -13,7 +13,7 @@ public class CircuitBreakerController {
     public List<Ordonnance> OrdonnanceFallback(){
         List<Ordonnance> ordonnances = new ArrayList<Ordonnance>();
         ordonnances.add(
-                new Ordonnance(Date.valueOf("2020-01-01"), "contenue 1")
+                new Ordonnance(Date.valueOf("2020-01-01"), "contenue 1",null)
         );
         return ordonnances;
     }

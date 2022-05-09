@@ -17,6 +17,12 @@ Spring Cloud Gateway --> cloud-gateway
 
 lombok,web,data-rest,data-jpa,mysql,devtools
 
-ms ->  Spring Web,Spring REST Repositories,Mysql Driver,Spring Data JPA,lombok,Eureka Discovery Client
+ms ->  Spring Web,Spring REST Repositories,Mysql Driver,Spring Data JPA,lombok,Eureka Discovery Client, 
+
+Config client (when there is a config ms), Spring boot actuator(when there is a config ms)  , OpenFeign,CloudLoad Balancer (for routing)
+
+
+
 registry -> Eureka Server
 gateway -> Resilience4j(spring-cloud-starter-circuitbreaker-reactor-resilience4j), Spring Cloud Gateway, Config Client,lombok
+config -> Config Server

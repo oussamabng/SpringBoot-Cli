@@ -1,0 +1,4 @@
+@EnableConfigServer
+public class ApplicationMain {
+    
+}

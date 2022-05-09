@@ -10,4 +10,5 @@ import java.util.Date;
 public class Ordonnance {
     private Date date;
     private String contenu;
+    private Long patientId;
 }

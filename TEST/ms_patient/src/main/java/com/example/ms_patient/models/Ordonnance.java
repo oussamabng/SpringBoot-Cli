@@ -5,4 +5,5 @@ import java.util.*;
 public class Ordonnance{
 private Date date;
 private String contenue;
+private Long patientId;
 }

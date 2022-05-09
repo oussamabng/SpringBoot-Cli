@@ -1,0 +1,2 @@
+localhost:port/actuator/refresh   POST
+to refresh for new data pushed in the github repo without reloading the instance
