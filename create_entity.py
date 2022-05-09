@@ -65,9 +65,10 @@ if __name__ == "__main__":
   for attribute in attributes:
         name,type = attribute.split(":")
         if (type not in data_types):
-              if (type.split("-")[1] != "enum" and type.split("-")[1] != "embeddable"):
-                    print("this type: {} don't exist in JAVA".format(type))
-                    exit(0)
+              if (len(type.split("-")) == 2):
+                  if (type.split("-")[1] != "enum" and type.split("-")[1] != "embeddable"):
+                        print("this type: {} don't exist in JAVA".format(type))
+                        exit(0)
   if (init.embeddable and init.embeddable == "true"):
         create(embeddable=True)
   else:

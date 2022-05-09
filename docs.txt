@@ -1,0 +1,198 @@
+http://localhost:8080/employees/search/getEmployeeByEmailIsContaining?domaine=com
+http://localhost:8080/employees/search/getEmployeeByEmailEndingWith?domaine=com
+http://localhost:8080/employees/search/getEmployeesByEmailEndsWith?domaine=com
+
+
+public List<Employee> getEmployeesByEmailEndsWith(@Param("domaine") String domaine);
+
+
+Anotated query
+@Query("SELECT count(e) FROM Employee e WHERE e.genre=:gender")
+
+@Query("")
+public Object[]
+
+
+@Projection(name = "pr1",types = Employe.class)
+public interface EmployeProjection {
+    public Long getEmployeId();
+
+    @Value("#{target.project.projectName}")
+    public String getProjectName();
+}
+
+http://localhost:8080/employees?projection=pr1
+
+
+getEmployeeWithDep(@RequestParam("dn") String dn) --> ?dn
+
+modifyEmploye(@PathVariable("id")  --> /{id}
+
+@Transient with model
+
+
+@FeignClient(name = "ms-formation", url="localhost:8081")
+
+
+
+
+EUREKAA SERVER MS:(registery)
+
+@EnableEurekaServer
+
+server.port=8888
+spring.application.name=eureka-server
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+
+in client (feign):
+
+eureka client
+
+eureka.client.fetch-registry=true
+eureka.client.register-with-eureka=true
+eureka.client.service-url.defaultZone=http://localhost:8888/eureka
+
+#logging load balancing information
+feign.client.config.default.logger-level=FULL
+logging.level.com.example.msformation.proxy.ProxyEtudiant=DEBUG
+
+
+in PROXY:
+
+@FeignClient(name = "ms-scolarite")
+@LoadBalancerClient(name = "ms-scolarite")
+
+cloud balancer dependecie
+
+creating instances :
+Java –D server.port=8082 –jar ms-formation.jar
+
+
+BALANCER:
+
+
+public class LBConfiguration {
+@Bean
+public ReactorLoadBalancer<ServiceInstance> config(
+
+Environment env, LoadBalancerClientFactory lc) {
+String name = env.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
+return new RandomLoadBalancer(lc.getLazyProvider(name,
+ServiceInstanceListSupplier.class), name);
+}}
+
+@FeignClient(name = "ms-formation")
+@LoadBalancerClient(name = "ms-formation", configuration =LBConfiguration.class)
+
+
+
+
+
+
+
+
+
+
+Gateway:
+
+dependecies : gateway,eureka client
+
+server.port=7777
+spring.application.name=ms-proxy
+eureka.client.register-with-eureka=true
+eureka.client.service-url.defaultZone=http://localhost:8888/eureka
+
+
+
+CIRCUIT BREAKER:
+
+dependecies : resilience4j
+
+update to this
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
+</dependency>
+
+resilience4j:
+circuitbreaker:
+configs:
+default:
+slidingWindowSize: 10
+minimumNumberOfCalls: 5
+permittedNumberOfCallsInHalfOpenState: 3
+automaticTransitionFromOpenToHalfOpenEnabled: true
+waitDurationInOpenState: 2s
+failureRateThreshold: 50
+eventConsumerBufferSize: 10
+recordExceptions:
+- org.springframework.web.client.HttpServerErrorException
+- java.io.IOException
+ignoreExceptions:
+- java.lang.IllegalStateException
+shared:
+slidingWindowSize: 100
+permittedNumberOfCallsInHalfOpenState: 30
+waitDurationInOpenState: 1s
+failureRateThreshold: 50
+eventConsumerBufferSize: 10
+ignoreExceptions:
+- java.lang.IllegalStateException
+timelimiter:
+configs:
+default:
+timeoutDuration: 10s
+cancelRunningFuture: false
+instances:
+backendB:
+timeoutDuration: 250ms
+
+
+
+
+
+
+gatway appl.yaml:
+
+
+server:
+  port: 7777
+
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+spring:
+  application:
+    name: ms-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: route1
+          predicates:
+            - Path=/service-formation/**
+          filters:
+            - RewritePath=/service-formation/(?<s>.*), /${s}
+            - name: CircuitBreaker
+              args:
+               name: FallBabk-formation
+               fallbackuri: forward:/defaultFormations
+          uri: lb://ms-formation
+
+        - id: route2
+          predicates:
+              - Path=/scolarite/**
+          filters:
+              - RewritePath=/scolarite/(?<s>.*), /${s}
+
+          uri: lb://ms-scolarite

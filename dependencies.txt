@@ -13,3 +13,10 @@ Config Client --> cloud-config-client
 Config Server --> cloud-config-server
 DevTools --> devtools
 Spring Cloud Gateway --> cloud-gateway
+
+
+lombok,web,data-rest,data-jpa,mysql,devtools
+
+ms ->  Spring Web,Spring REST Repositories,Mysql Driver,Spring Data JPA,lombok,Eureka Discovery Client
+registry -> Eureka Server
+gateway -> Resilience4j(spring-cloud-starter-circuitbreaker-reactor-resilience4j), Spring Cloud Gateway, Config Client,lombok
